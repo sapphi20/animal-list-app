@@ -27,7 +27,7 @@ class AnimalListAdapter(private val list: List<String>) : RecyclerView.Adapter<A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = list[position]
         holder.itemView.setOnClickListener {
-            val goDetail = Intent(it.context, ItemDetailActivity::class.java)
+            val goDetail = Intent(it.context, AnimalInfoActivity::class.java)
             it.context.startActivity(goDetail)
         }
     }
