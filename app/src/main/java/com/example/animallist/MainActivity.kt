@@ -18,10 +18,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val animals: HashMap<String, Array<String>> = HashMap()
+        animals["Lion"] = arrayOf("Savannah", "16", "")
+        animals["Tiger"] = arrayOf("Rain forest", "15", "")
+        animals["Horse"] = arrayOf("Prairie", "16", "")
+        animals["Shark"] = arrayOf("Sea", "30", "")
+        animals["Human"] = arrayOf("City", "70", "")
 
-        val animals: List<String> = listOf("Zebra", "Lion", "Giraffe")
+        val animalAdapter = AnimalListAdapter(animals)
         val recycler: RecyclerView = findViewById(R.id.item_list)
         recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = AnimalListAdapter(animals)
+        recycler.adapter = animalAdapter
     }
 }
