@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AnimalListAdapter(private val list: List<String>) : RecyclerView.Adapter<AnimalListAdapter.ViewHolder>() {
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class AnimalListAdapter(private val list: HashMap<String, Array<String>>) :
+    RecyclerView.Adapter<AnimalListAdapter.ViewHolder>() {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.animal_name)
     }
 
@@ -25,9 +26,11 @@ class AnimalListAdapter(private val list: List<String>) : RecyclerView.Adapter<A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = list[position]
+        val names = list.keys.toList()
+        holder.textView.text = names[position]
         holder.itemView.setOnClickListener {
             val goDetail = Intent(it.context, AnimalInfoActivity::class.java)
+            goDetail.putExtra(names[position], list[names[position]])
             it.context.startActivity(goDetail)
         }
     }
